@@ -42,6 +42,11 @@ class FuzzBuzzPrinterSpec extends FlatSpec with Matchers {
     output shouldEqual "fuzz fuzz buzz fuzz fuzzbuzz fuzzbuzz fuzzbuzz fuzzbuzz buzz"
   }
 
+  it should """print "lucky" if number contains the digit '3' """ in {
+    val output = FuzzBuzzPrinter.getOutput((1 to 14).toList)
+    output shouldEqual "1 2 lucky 4 buzz fuzz 7 8 fuzz buzz 11 fuzz lucky 14"
+  }
+
 
 }
 
