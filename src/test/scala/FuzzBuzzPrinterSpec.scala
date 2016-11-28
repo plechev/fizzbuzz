@@ -3,7 +3,7 @@ import org.scalatest._
 class FizzBuzzPrinterSpec extends FlatSpec with Matchers {
 
   "FizzBuzzPrinter" should """print a number for non multiples of 3, 5 or 15 or containing digit '3'""" in {
-    val output = FizzBuzzPrinter.getOutput(List(1,2,4,7,8,11,14,16,17))
+    val output = FizzBuzzPrinter.getOutput(List(1, 2, 4, 7, 8, 11, 14, 16, 17))
     output shouldEqual "1 2 4 7 8 11 14 16 17"
   }
 
@@ -13,7 +13,7 @@ class FizzBuzzPrinterSpec extends FlatSpec with Matchers {
   }
 
   it should """print "fizz" for multiples of 3 only and including digit '3'""" in {
-    val output = FizzBuzzPrinter.getOutput(List(3,6,9,12,18))
+    val output = FizzBuzzPrinter.getOutput(List(3, 6, 9, 12, 18))
     output shouldEqual "lucky fizz fizz fizz fizz"
   }
 
@@ -42,9 +42,17 @@ class FizzBuzzPrinterSpec extends FlatSpec with Matchers {
     output shouldEqual "lucky fizz buzz fizz fizzbuzz lucky fizzbuzz fizzbuzz buzz"
   }
 
-  it should """print "lucky" if number contains the digit '3' """ in {
+  it should "produce report for tokens occurrences" in {
     val output = FizzBuzzPrinter.getOutput((1 to 20).toList)
     output shouldEqual "1 2 lucky 4 buzz fizz 7 8 fizz buzz 11 fizz lucky 14 fizzbuzz 16 17 fizz 19 buzz"
+    val report = FizzBuzzPrinter.createReport(output)
+    report should (
+        include("fizz: 4") and
+        include("buzz: 3") and
+        include("fizzbuzz: 1") and
+        include("lucky: 2") and
+        include("integer: 10")
+      )
   }
 
 
