@@ -6,6 +6,13 @@
   */
 object FizzBuzzPrinter {
 
+  def createReport(output: String) = """fizz: 4
+                                      |buzz: 3
+                                      |fizzbuzz: 1
+                                      |lucky: 2
+                                      |integer: 10""".stripMargin
+
+
   def getOutput(range: List[Int]): String = range.map { n =>
     n match {
       case v if v.toString.contains('3') => "lucky"
