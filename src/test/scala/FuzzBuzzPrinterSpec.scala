@@ -13,5 +13,10 @@ class FuzzBuzzPrinterSpec extends FlatSpec with Matchers {
     output shouldEqual "1 2 fuzz 4 5 fuzz 7 8 fuzz 10 11 fuzz 13 14 fuzz"
   }
 
+  it should """print "buzz" for multiples of 5""" in {
+    val output = FuzzBuzzPrinter.getOutput((1 to 15).toList)
+    output shouldEqual "1 2 fuzz 4 buzz fuzz 7 8 fuzz buzz 11 fuzz 13 14 fuzz"
+  }
+
 }
 
