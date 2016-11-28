@@ -1,6 +1,6 @@
 import org.scalatest._
 
-class FizzBuzzPrinterSpec extends FlatSpec with Matchers {
+class FizzBuzzPrinterSpec extends FlatSpec with Matchers with Assertions {
 
   "FizzBuzzPrinter" should """print a number for non multiples of 3, 5 or 15 or containing digit '3'""" in {
     val output = FizzBuzzPrinter.getOutput(List(1, 2, 4, 7, 8, 11, 14, 16, 17))
@@ -47,7 +47,7 @@ class FizzBuzzPrinterSpec extends FlatSpec with Matchers {
     output shouldEqual "1 2 lucky 4 buzz fizz 7 8 fizz buzz 11 fizz lucky 14 fizzbuzz 16 17 fizz 19 buzz"
     val report = FizzBuzzPrinter.createReport(output)
     report should (
-        include("fizz: 4") and
+      include("fizz: 4") and
         include("buzz: 3") and
         include("fizzbuzz: 1") and
         include("lucky: 2") and
@@ -55,6 +55,19 @@ class FizzBuzzPrinterSpec extends FlatSpec with Matchers {
       )
   }
 
+  // some edge conditions not covered in assignment
+  it should "fail ungracefully when input is <null>" in {
+    assertThrows[NullPointerException] {
+      FizzBuzzPrinter.getOutput(null)
+    }
+  }
 
+  it should "return empty string when input is <empty>" in {
+    FizzBuzzPrinter.getOutput(List.empty) shouldEqual ""
+  }
+
+  it should "return replaced 3 and 5 for negative numbers" in {
+    FizzBuzzPrinter.getOutput(List(-1, -3, -5, 7)) shouldEqual "-1 lucky buzz 7"
+  }
 }
 
