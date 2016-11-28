@@ -6,8 +6,12 @@
   */
 object FuzzBuzzPrinter {
 
-  def getOutput(range: List[Int]) = range mkString " "
-
+  def getOutput(range: List[Int]) = range.map { n =>
+    n match {
+      case v if v % 3 == 0 => "fuzz"
+      case _ => n
+    }
+  } mkString " "
 
 }
 
